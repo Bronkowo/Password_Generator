@@ -49,21 +49,21 @@ $create.Font = "Microsoft Sans Serif,10"
 $create.add_MouseClick({ 
 #region Variablen
 $ErrorActionPreference = "SilentlyContinue"
-$Ergebnis              = $null
+$Result = $null
 
-[String]$kleinB = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z'
-[String]$grossB = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'
-[String]$zahl   = '1,2,3,4,5,6,7,8,9,0'
-[String]$sonder = '!,",#,%,&'
-[String]$All    = $SmallLetter + "," + $BigLetter + "," + $Numeral + "," + $Symbol 
+[String]$SmallLetter = 'a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z'
+[String]$BigLetter   = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'
+[String]$Numeral     = '1,2,3,4,5,6,7,8,9,0'
+[String]$Symbol      = '!,",#,%,&'
+[String]$All         = $SmallLetter + "," + $BigLetter + "," + $Numeral + "," + $Symbol 
 
 
-[int]$anzahl = $pw_count_box.Text
-[int]$laenge = $pw_length_box.Text
+[int]$Number = $pw_count_box.Text
+[int]$Length = $pw_length_box.Text
 #endregion
 
 #region Errorhandling
-if ($laenge -lt 8)
+if ($Length -lt 8)
     {
      Write-Warning -Message "Die mindest Passwortlaenge betraegt 8 Zeichen!"
      Write-Warning -Message "Darf aber nur aus Zahlen bestehen!"
@@ -90,7 +90,7 @@ for ($x = 1; $x -le $Number ; $x++)
 #endregion
 
 #region Passwortausgabe
-$Ergebnis.Split(";") | Out-File -FilePath $env:USERPROFILE\Desktop\Passwoerter.txt
+$Result.Split(";") | Out-File -FilePath $env:USERPROFILE\Desktop\Passwoerter.txt
 $passwortgenerator.Dispose()
 #endregion 
 })
