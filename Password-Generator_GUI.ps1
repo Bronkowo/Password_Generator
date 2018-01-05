@@ -55,6 +55,8 @@ $Ergebnis              = $null
 [String]$grossB = 'A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z'
 [String]$zahl   = '1,2,3,4,5,6,7,8,9,0'
 [String]$sonder = '!,",#,%,&'
+[String]$All    = $SmallLetter + "," + $BigLetter + "," + $Numeral + "," + $Symbol 
+
 
 [int]$anzahl = $pw_count_box.Text
 [int]$laenge = $pw_length_box.Text
@@ -71,23 +73,19 @@ if ($laenge -lt 8)
 #endregion
 
 #region Passwort generieren
-for ($x = 1; $x -le $anzahl ; $x++)
+for ($x = 1; $x -le $Number ; $x++)
     { 
-     [String]$NewPW = ""
-     $NewPW += Get-Random -InputObject $grossB.Split(",")
-     
-     for ($i = 1; $i -le (($laenge - 2)/2) ; $i++)
-        { 
-         $NewPW += Get-Random -InputObject $kleinB.Split(",")
-         $NewPW += Get-Random -InputObject $sonder.Split(",")
-        }
-     
-     $NewPW    += Get-Random -InputObject $zahl.Split(",")  
-     
-     if ($NewPW.Length -lt $laenge)
-        { $NewPW += Get-Random -InputObject $zahl.Split(",") }
+    [String]$NewPW = ""
+    $NewPW += Get-Random -InputObject $SmallLetter.Split(",")
+    $NewPW += Get-Random -InputObject $BigLetter.Split(",")
+    $NewPW += Get-Random -InputObject $Symbol.Split(",")
 
-     [String[]]$Ergebnis += $NewPW
+    for ($i = 1; $i -le ($Length - 3) ; $i++)
+        { 
+        $NewPW += Get-Random -InputObject $All.Split(",")
+        }
+
+    [String[]]$Result += $NewPW
     }
 #endregion
 
